@@ -24,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
-        android:hint="Enter an arabic number"
-        android:inputType="number"
+        android:hint="Enter a number"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
         tools:layout_editor_absoluteX="0dp" />

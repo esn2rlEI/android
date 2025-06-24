@@ -12,6 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public final class MainActivity extends AppCompatActivity {
 
     private EditText arabic;
@@ -32,6 +37,8 @@ public final class MainActivity extends AppCompatActivity {
             final String input = this.arabic.getText().toString();
             if (!TextUtils.isEmpty(input) && TextUtils.isDigitsOnly(input)) {
                 this.result.setText(this.toRoman(Integer.parseInt(input)));
+            } else if (!TextUtils.isEmpty(input) && this.isRomansOnly(input.toUpperCase())) {
+                this.result.setText("" + this.toArabic(input.toUpperCase()));
             } else {
                 this.result.setText("Invalid number");
             }
@@ -49,6 +56,40 @@ public final class MainActivity extends AppCompatActivity {
             }
         }
         return builder.toString();
+    }
+
+    private int toArabic(final String number) {
+        final Map<Character, Integer> values = new HashMap<>();
+        values.put('I', 1);
+        values.put('V', 5);
+        values.put('X', 10);
+        values.put('L', 50);
+        values.put('C', 100);
+        values.put('D', 500);
+        values.put('M', 1000);
+        int current = 0, previous = 0;
+        for (int i = number.length() - 1; i >= 0; i--) {
+            final int value = values.getOrDefault(number.charAt(i), 0);
+            if (value < previous) current -= value;
+            else current += value;
+            previous = value;
+        }
+        return current;
+    }
+
+    private boolean isRomansOnly(final String text) {
+        final List<Character> values = new ArrayList<>();
+        values.add('I');
+        values.add('V');
+        values.add('X');
+        values.add('L');
+        values.add('C');
+        values.add('D');
+        values.add('M');
+        for (int i = 0; i < text.length(); i++) {
+            if (!values.contains(text.charAt(i))) return false;
+        }
+        return true;
     }
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drink_array">
+        <item>None</item>
+        <item>Espresso</item>
+        <item>Latte</item>
+        <item>Tea</item>
+    </string-array>
+    <string-array name="snack_array">
+        <item>None</item>
+        <item>Sandwich</item>
+        <item>Cookie</item>
+        <item>Croissant</item>
+    </string-array>
+    <string-array name="location_array">
+        <item>None</item>
+        <item>Warsaw Central Cafe</item>
+        <item>Downtown Deli Cracow</item>
+    </string-array>
+</resources>

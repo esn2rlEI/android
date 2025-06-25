@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/m_cafe" />
             <option value="$PROJECT_DIR$/m_converter" />
             <option value="$PROJECT_DIR$/m_stats" />
             <option value="$PROJECT_DIR$/m_timer" />

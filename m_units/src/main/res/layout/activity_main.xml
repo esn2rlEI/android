@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/inputEditText"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@id/conversionTypeSpinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"/>
 
     <Spinner
         android:id="@+id/fromUnitSpinner"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/inputEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"/>
 
     <Spinner
         android:id="@+id/toUnitSpinner"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/fromUnitSpinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"/>
 
     <Button
         android:id="@+id/convertButton"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/toUnitSpinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/resultTextView"
@@ -67,6 +67,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:gravity="center" />
+        android:gravity="center"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

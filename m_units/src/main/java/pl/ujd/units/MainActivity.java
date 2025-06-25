@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public final class MainActivity extends AppCompatActivity {
 
     private Spinner conversionTypeSpinner, fromUnitSpinner, toUnitSpinner;
     private EditText inputEditText;

@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/m_converter" />
             <option value="$PROJECT_DIR$/m_stats" />
             <option value="$PROJECT_DIR$/m_timer" />
+            <option value="$PROJECT_DIR$/m_units" />
           </set>
         </option>
       </GradleProjectSettings>

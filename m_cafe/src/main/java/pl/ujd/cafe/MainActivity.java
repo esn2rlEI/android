@@ -3,7 +3,6 @@ package pl.ujd.cafe;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -78,7 +77,6 @@ public final class MainActivity extends AppCompatActivity {
             double price = cursor.getDouble(0);
             String description = cursor.getString(1);
             this.info.setText(name + " – Price: " + price + " PLN, " + description);
-//            this.map.setImageDrawable(null);
         }
         cursor.close();
     }
@@ -90,34 +88,8 @@ public final class MainActivity extends AppCompatActivity {
             final String address = cursor.getString(0);
             final String hours = cursor.getString(1);
             this.info.setText(name + '\n' + "Address: " + address + '\n' + "Open: " + hours);
-//            this.map.setImageResource(this.getResources().getIdentifier(name, "drawable", this.getPackageName()));
         }
         cursor.close();
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

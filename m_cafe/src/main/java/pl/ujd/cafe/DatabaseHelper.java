@@ -48,26 +48,3 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
     @Override public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion) {}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

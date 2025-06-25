@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Units</string>
+    <string-array name="conversion_types">
+        <item>Number System</item>
+        <item>Currency</item>
+        <item>Unit</item>
+    </string-array>
+</resources>

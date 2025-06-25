@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stats"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.05"/>
+
+        <EditText
+            android:id="@+id/paceInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:inputType="numberDecimal"
+            android:hint="Enter a pace (minutes/km)"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/paceSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Calculate from pace"
+            app:layout_constraintTop_toBottomOf="@+id/paceInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"/>
+
+        <EditText
+            android:id="@+id/speedInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:inputType="numberDecimal"
+            android:hint="Enter a speed (km/h)"
+            app:layout_constraintTop_toBottomOf="@+id/paceSubmit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/speedSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Calculate from speed"
+            app:layout_constraintTop_toBottomOf="@+id/speedInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"/>
+
+        <EditText
+            android:id="@+id/distanceInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:inputType="numberDecimal"
+            android:hint="Enter a distance (km)"
+            app:layout_constraintTop_toBottomOf="@+id/speedSubmit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/distanceSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Calculate time for distance"
+            app:layout_constraintTop_toBottomOf="@+id/distanceInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"/>
+
+        <EditText
+            android:id="@+id/goalInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:inputType="numberDecimal"
+            android:hint="Enter a distance for goal time (km)"
+            app:layout_constraintTop_toBottomOf="@+id/distanceSubmit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+
+        <EditText
+            android:id="@+id/timeInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:inputType="numberDecimal"
+            android:hint="Enter a time (minutes)"
+            app:layout_constraintTop_toBottomOf="@+id/goalInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/goalSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Calculate pace and speed for distance and time"
+            app:layout_constraintTop_toBottomOf="@+id/timeInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"/>
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="32sp"
+            android:text=""
+            android:hint="Result:"
+            app:layout_constraintTop_toBottomOf="@+id/goalSubmit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

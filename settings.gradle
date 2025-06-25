@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "android"
 include ':m_converter'
+include ':m_stats'

@@ -1,8 +1,12 @@
 package pl.ujd.cafe;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -12,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public final class MainActivity extends AppCompatActivity {
 
+    private DatabaseHelper helper;
+
     private TextView info;
     private ImageView map;
 
@@ -20,67 +26,98 @@ public final class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         this.setContentView(R.layout.activity_main);
 
-        final Spinner drinks = this.findViewById(R.id.drinkSpinner);
-        final Spinner snacks = this.findViewById(R.id.snackSpinner);
-        final Spinner locations = this.findViewById(R.id.locationSpinner);
-
         this.info = this.findViewById(R.id.infoText);
         this.map = this.findViewById(R.id.mapImage);
 
-        drinks.setOnItemSelectedListener(new SimpleListener() {
-            @Override public void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
-                final String item = parent.getItemAtPosition(position).toString();
-                if (!item.equals("None")) {
-                    info.setText(item + " - Price: " + getDrinkPrice(item));
-                    map.setImageDrawable(null);
+        this.helper = new DatabaseHelper(this);
+
+        this.spinnerSetup(R.id.drinkSpinner, "drinks");
+        this.spinnerSetup(R.id.snackSpinner, "snacks");
+        this.spinnerSetup(R.id.locationSpinner, "locations");
+    }
+
+    private void spinnerSetup(final int id, final String table) {
+        final Spinner spinner = this.findViewById(id);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                this.getNames(table)
+        );
+        adapter.setDropDownViewResource(androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                final String selected = parent.getItemAtPosition(position).toString();
+                if (!selected.equals("None")) {
+                    if (table.equals("drinks") || table.equals("snacks")) {
+                        showProductInfo(table, selected);
+                    } else showLocationInfo(selected);
                 }
             }
-        });
-        snacks.setOnItemSelectedListener(new SimpleListener() {
-            @Override public void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
-                final String item = parent.getItemAtPosition(position).toString();
-                if (!item.equals("None")) {
-                    info.setText(item + " - Price: " + getSnackPrice(item));
-                    map.setImageDrawable(null);
-                }
-            }
-        });
-        locations.setOnItemSelectedListener(new SimpleListener() {
-            @Override public void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
-                final String item = parent.getItemAtPosition(position).toString();
-                if (!item.equals("None")) {
-                    if (item.equals("Warsaw Central Cafe")) {
-                        info.setText("Warsaw Central Cafe\nAddress: Main Street 1\nOpen: 08:00-22:00");
-//                        map.setImageResource(R.drawable.warsaw_central_cafe);
-                    } else if (item.equals("Downtown Deli Cracow")) {
-                        info.setText("Downtown Deli Cracow\nAddress: High Street 1\nOpen: 07:00-23:00");
-//                        map.setImageResource(R.drawable.downtown_deli_cracow);
-                    }
-                }
-            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
     }
 
-    private String getSnackPrice(final String name) {
-        switch (name) {
-            case "Sandwich": return "5.00 PLN";
-            case "Cookie": return "1.20 PLN";
-            case "Croissant": return "3.00 PLN";
-            default: return "N/A";
+    private String[] getNames(final String table) {
+        final SQLiteDatabase database = this.helper.getReadableDatabase();
+        final Cursor cursor = database.rawQuery("SELECT name FROM " + table, null);
+        final String[] names = new String[cursor.getCount() + 1];
+        names[0] = "None";
+        int i = 1;
+        while (cursor.moveToNext()) {
+            names[i++] = cursor.getString(0);
         }
+        cursor.close();
+        return names;
     }
 
-    private String getDrinkPrice(final String name) {
-        switch (name) {
-            case "Espresso": return "4.00 PLN";
-            case "Latte": return "4.20 PLN";
-            case "Tea": return "2.00 PLN";
-            default: return "N/A";
+    private void showProductInfo(final String table, final String name) {
+        final SQLiteDatabase database = this.helper.getReadableDatabase();
+        final Cursor cursor = database.rawQuery("SELECT price, description FROM " + table + " WHERE name=?", new String[]{name});
+        if (cursor.moveToFirst()) {
+            double price = cursor.getDouble(0);
+            String description = cursor.getString(1);
+            this.info.setText(name + " – Price: " + price + " PLN, " + description);
+//            this.map.setImageDrawable(null);
         }
+        cursor.close();
     }
 
-    abstract class SimpleListener implements AdapterView.OnItemSelectedListener {
-        public void onNothingSelected(final AdapterView<?> parent) {}
+    private void showLocationInfo(final String name) {
+        final SQLiteDatabase database = this.helper.getReadableDatabase();
+        final Cursor cursor = database.rawQuery("SELECT address, hours, map_image_name FROM locations WHERE name=?", new String[]{name});
+        if (cursor.moveToFirst()) {
+            final String address = cursor.getString(0);
+            final String hours = cursor.getString(1);
+            this.info.setText(name + '\n' + "Address: " + address + '\n' + "Open: " + hours);
+//            this.map.setImageResource(this.getResources().getIdentifier(name, "drawable", this.getPackageName()));
+        }
+        cursor.close();
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

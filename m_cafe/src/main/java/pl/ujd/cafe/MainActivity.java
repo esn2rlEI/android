@@ -2,11 +2,10 @@ package pl.ujd.cafe;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public final class MainActivity extends AppCompatActivity {
-
-    private final DatabaseHelper HELPER = new DatabaseHelper(this);
 
     @Override protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

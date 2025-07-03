@@ -8,6 +8,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao&amp;libraries=places&amp;callback=initMap
+"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,6 +37,9 @@
             android:exported="true"/>
         <activity
             android:name=".LocationsActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".MapActivity"
             android:exported="true"/>
         <activity
             android:name=".CartActivity"

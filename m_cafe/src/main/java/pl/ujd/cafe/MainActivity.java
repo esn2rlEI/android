@@ -1,21 +1,32 @@
 package pl.ujd.cafe;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public final class MainActivity extends AppCompatActivity {
 
-    private DatabaseHelper helper;
+    private final DatabaseHelper HELPER = new DatabaseHelper(this);
+
+    @Override protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.activity_main);
+
+        this.findViewById(R.id.drinks_button).setOnClickListener(view -> {
+            this.startActivity(new Intent(this, DrinksActivity.class));
+        });
+        this.findViewById(R.id.snacks_button).setOnClickListener(view -> {
+            this.startActivity(new Intent(this, SnacksActivity.class));
+        });
+        this.findViewById(R.id.locations_button).setOnClickListener(view -> {
+            this.startActivity(new Intent(this, LocationsActivity.class));
+        });
+        this.findViewById(R.id.cart_button).setOnClickListener(view -> {
+            this.startActivity(new Intent(this, CartActivity.class));
+        });
+    }
+
+    /*private DatabaseHelper helper;
 
     private TextView info;
     private ImageView map;
@@ -90,6 +101,6 @@ public final class MainActivity extends AppCompatActivity {
             this.info.setText(name + '\n' + "Address: " + address + '\n' + "Open: " + hours);
         }
         cursor.close();
-    }
+    }*/
 
 }

@@ -3,4 +3,19 @@
     <string name="select_drink">Select a drink</string>
     <string name="select_snack">Select a snack</string>
     <string name="select_location">Select a location</string>
+    <string name="drinks_button">Drinks</string>
+    <string name="snacks_button">Snacks</string>
+    <string name="locations_button">Locations</string>
+    <string name="cart_button">Cart</string>
+    <string name="checkout_button">Checkout</string>
+    <string name="list_item_image">Item image</string>
+    <string name="list_item_name">Item name</string>
+    <string name="drink_image">Drink image</string>
+    <string name="drink_name">Drink Name</string>
+    <string name="drink_description">Drink description goes here.</string>
+    <string name="snack_image">Snack image</string>
+    <string name="snack_name">Snack Name</string>
+    <string name="snack_description">Snack description goes here.</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="location_info">Locations will be shown here.</string>
 </resources>

@@ -12,11 +12,29 @@
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DrinksActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".DrinkDetailActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".SnacksActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".SnackDetailActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".LocationsActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".CartActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

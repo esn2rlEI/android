@@ -3,30 +3,48 @@ package pl.ujd.units;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 public final class MainActivity extends AppCompatActivity {
 
-    private Spinner conversionTypeSpinner, fromUnitSpinner, toUnitSpinner;
-    private EditText inputEditText;
-    private TextView resultTextView;
+    private Spinner fromUnitSpinner;
+    private Spinner toUnitSpinner;
+    private EditText input;
+    private TextView result;
 
-    private String conversionType = "Number System"; // Default
+    private String conversionType = "Number System";
     private String fromUnit = "";
     private String toUnit = "";
+
+    @Override public void onSaveInstanceState(@NonNull final Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putString("stopwatch_input", this.input.getText().toString());
+        state.putString("stopwatch_result", this.result.getText().toString());
+        state.putString("stopwatch_from_unit", this.fromUnit);
+        state.putString("stopwatch_to_unit", this.toUnit);
+    }
 
     @Override protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
-        this.conversionTypeSpinner = findViewById(R.id.conversionTypeSpinner);
         this.fromUnitSpinner = findViewById(R.id.fromUnitSpinner);
         this.toUnitSpinner = findViewById(R.id.toUnitSpinner);
-        this.inputEditText = findViewById(R.id.inputEditText);
-        this.resultTextView = findViewById(R.id.resultTextView);
-        final Button convertButton = findViewById(R.id.convertButton);
+        this.input = findViewById(R.id.inputEditText);
+        this.result = findViewById(R.id.resultTextView);
 
-        this.conversionTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        if (savedInstanceState != null) {
+            this.input.setText(savedInstanceState.getString("stopwatch_input"));
+            this.result.setText(savedInstanceState.getString("stopwatch_result"));
+            this.fromUnit = savedInstanceState.getString("stopwatch_from_unit");
+            this.toUnit = savedInstanceState.getString("stopwatch_to_unit");
+        }
+
+        ((Spinner) this.findViewById(R.id.conversionTypeSpinner)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
                 conversionType = parent.getItemAtPosition(position).toString();
                 setupUnitSpinners();
@@ -34,13 +52,12 @@ public final class MainActivity extends AppCompatActivity {
             public void onNothingSelected(final AdapterView<?> parent) {}
         });
 
-        convertButton.setOnClickListener(v -> {
+        this.findViewById(R.id.convertButton).setOnClickListener(v -> {
             try {
-                final double inputValue = Double.parseDouble(this.inputEditText.getText().toString());
-                final String result = performConversion(inputValue);
-                this.resultTextView.setText(result);
-            } catch (NumberFormatException e) {
-                this.resultTextView.setText("Invalid input");
+                final double inputValue = Double.parseDouble(this.input.getText().toString());
+                this.result.setText(this.performConversion(inputValue));
+            } catch (final NumberFormatException exception) {
+                this.result.setText(R.string.invalid_input);
             }
         });
     }
@@ -91,21 +108,18 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     private String convertNumberSystem(final long value, final String from, final String to) {
-        long decimal;
-
         try {
-            decimal = parseNumber(value, from);
-        } catch (Exception e) {
-            return "Invalid input for the selected numeral system.";
-        }
-
-        switch (to) {
-            case "Decimal": return String.valueOf(decimal);
-            case "Binary": return Long.toBinaryString(decimal);
-            case "Quaternary": return Long.toString(decimal, 4);
-            case "Octal": return Long.toOctalString(decimal);
-            case "Hexadecimal": return Long.toHexString(decimal).toUpperCase();
-            default: return "Invalid conversion.";
+            long decimal = parseNumber(value, from);
+            switch (to) {
+                case "Decimal": return String.valueOf(decimal);
+                case "Binary": return Long.toBinaryString(decimal);
+                case "Quaternary": return Long.toString(decimal, 4);
+                case "Octal": return Long.toOctalString(decimal);
+                case "Hexadecimal": return Long.toHexString(decimal).toUpperCase();
+                default: return "Invalid conversion";
+            }
+        } catch (final Exception exception) {
+            return "Invalid input for the selected numeral system";
         }
     }
 
@@ -124,7 +138,6 @@ public final class MainActivity extends AppCompatActivity {
     private String convertCurrency(final double value, final String from, final String to) {
         final double plnToUSD = 0.25;
         final double plnToEUR = 0.22;
-
         final double usdToPLN = 4.0;
         final double eurToPLN = 4.5;
 
@@ -141,7 +154,7 @@ public final class MainActivity extends AppCompatActivity {
             result = value;
         }
 
-        return String.format("%.2f", result);
+        return String.format(Locale.getDefault(), "%.2f", result);
     }
 
     private String convertUnit(final double value, final String from, final String to) {
@@ -155,7 +168,7 @@ public final class MainActivity extends AppCompatActivity {
             return "Invalid units.";
         }
 
-        return String.format("%.4f", result);
+        return String.format(Locale.getDefault(), "%.4f", result);
     }
 
     private double getLengthMultiplier(final String unit) {
@@ -170,4 +183,5 @@ public final class MainActivity extends AppCompatActivity {
             default: return -1;
         }
     }
+
 }

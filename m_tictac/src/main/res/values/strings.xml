@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">m_tictac</string>
+    <string name="app_name">TicTac</string>
+    <string name="score">X: 0.0 | O: 0.0</string>
+    <string name="restart">New Game</string>
 </resources>

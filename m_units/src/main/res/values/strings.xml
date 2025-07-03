@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Units</string>
+    <string name="invalid_input">Invalid input</string>
+    <string name="enter_value">Enter value</string>
+    <string name="convert">Convert</string>
+    <string name="result">Result</string>
     <string-array name="conversion_types">
         <item>Number System</item>
         <item>Currency</item>

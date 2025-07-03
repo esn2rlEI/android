@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import java.util.Locale;
+
 public final class StopwatchFragment extends Fragment {
 
     private final Handler HANDLER = new Handler();
@@ -48,7 +50,7 @@ public final class StopwatchFragment extends Fragment {
         layout.setPadding(16, 16, 16, 16);
 
         this.time1 = new TextView(this.getContext());
-        this.time1.setText("00:00:00");
+        this.time1.setText(R.string.stopwatch_zero);
         layout.addView(this.time1);
         layout.addView(this.getButtonLayout(1,
                 this.start1 = new Button(this.getContext()),
@@ -56,7 +58,7 @@ public final class StopwatchFragment extends Fragment {
                 this.stop1 = new Button(this.getContext()))
         );
         this.time2 = new TextView(this.getContext());
-        this.time2.setText("00:00:00");
+        this.time2.setText(R.string.stopwatch_zero);
         layout.addView(this.time2);
         layout.addView(this.getButtonLayout(2,
                 this.start2 = new Button(this.getContext()),
@@ -64,18 +66,38 @@ public final class StopwatchFragment extends Fragment {
                 this.stop2 = new Button(this.getContext()))
         );
 
+        if (savedInstanceState != null) {
+            this.time1.setText(savedInstanceState.getString("stopwatch_result_1"));
+            this.time2.setText(savedInstanceState.getString("stopwatch_result_2"));
+            this.timeElapsed1 = savedInstanceState.getLong("stopwatch_elapsed_1");
+            this.timeElapsed2 = savedInstanceState.getLong("stopwatch_elapsed_2");
+
+            if (savedInstanceState.getBoolean("stopwatch_is_running_1")) this.start1.performClick();
+            if (savedInstanceState.getBoolean("stopwatch_is_running_2")) this.start2.performClick();
+        }
+
         return layout;
+    }
+
+    @Override public void onSaveInstanceState(@NonNull final Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putString("stopwatch_result_1", this.time1.getText().toString());
+        state.putString("stopwatch_result_2", this.time2.getText().toString());
+        state.putLong("stopwatch_elapsed_1", this.timeElapsed1);
+        state.putLong("stopwatch_elapsed_2", this.timeElapsed2);
+        state.putBoolean("stopwatch_is_running_1", this.isRunning1);
+        state.putBoolean("stopwatch_is_running_2", this.isRunning2);
     }
 
     private LinearLayout getButtonLayout(final int index, final Button start, final Button reset, final Button stop) {
         final LinearLayout row = new LinearLayout(this.getContext());
         row.setOrientation(LinearLayout.HORIZONTAL);
 
-        start.setText("START");
+        start.setText(R.string.stopwatch_start);
         row.addView(start);
-        reset.setText("RESET");
+        reset.setText(R.string.stopwatch_reset);
         row.addView(reset);
-        stop.setText("STOP");
+        stop.setText(R.string.stopwatch_stop);
         row.addView(stop);
 
         if (index == 1) {
@@ -103,16 +125,16 @@ public final class StopwatchFragment extends Fragment {
                 this.timeElapsed2 = 0;
                 this.time2.setText(this.format(0));
             });
-            stop.setOnClickListener(view -> this.isRunning1 = false);
+            stop.setOnClickListener(view -> this.isRunning2 = false);
         }
 
         return row;
     }
 
-    private String format(final long milis) {
-        final long s = milis / 1000;
+    private String format(final long millis) {
+        final long s = millis / 1000;
         final long m = s / 60;
-        return String.format("%02d:%02d.%02d", m, s % 60, (milis % 1000) / 10);
+        return String.format(Locale.getDefault(), "%02d:%02d.%02d", m, s % 60, (millis % 1000) / 10);
     }
 
 }

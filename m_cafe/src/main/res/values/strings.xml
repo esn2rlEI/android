@@ -12,10 +12,18 @@
     <string name="list_item_name">Item name</string>
     <string name="drink_image">Drink image</string>
     <string name="drink_name">Drink Name</string>
-    <string name="drink_description">Drink description goes here.</string>
+    <string name="drink_price">0.00 PLN</string>
+    <string name="drink_description">Drink description</string>
     <string name="snack_image">Snack image</string>
     <string name="snack_name">Snack Name</string>
-    <string name="snack_description">Snack description goes here.</string>
+    <string name="snack_price">0.00 PLN</string>
+    <string name="snack_description">Snack description</string>
     <string name="add_to_cart">Add to Cart</string>
-    <string name="location_info">Locations will be shown here.</string>
+    <string name="location_info">Locations</string>
+    <string name="location_name">Unknown</string>
+    <string name="location_hours">Open: 00:00–00:00</string>
+    <string name="location_address">Main Street, Mars</string>
+    <string name="cart_quantity">1</string>
+    <string name="cart_quantity_name">Quantity</string>
+    <string name="cart_quantity_prefix">Quantity:</string>
 </resources>

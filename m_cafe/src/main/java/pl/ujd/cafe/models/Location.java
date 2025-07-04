@@ -1,25 +1,35 @@
 package pl.ujd.cafe.models;
 
 public final class Location {
-    private String name;
-    private String address;
-    private double latitude;
-    private double longitude;
+    private final String name;
+    private final String address;
+    private final String hours;
+    private final int imageId;
 
-    public Location(String name, String address, double latitude, double longitude) {
+    public Location(final String name, final String address, final String hours, final int imageId) {
         this.name = name;
         this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.hours = hours;
+        this.imageId = imageId;
     }
 
-    public String getName() {return name; }
-    public String getAddress() { return address; }
-    public double getLatitude() { return latitude; }
-    public double getLongitude() { return longitude; }
+    public String getName() {
+        return name;
+    }
 
-    @Override
-    public String toString() {
+    public String getAddress() {
+        return address;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public int getImageId() {
+        return imageId;
+    }
+
+    @Override public String toString() {
         return name + " - " + address;
     }
 

@@ -39,6 +39,9 @@
             android:name=".LocationsActivity"
             android:exported="true"/>
         <activity
+            android:name=".LocationDetailActivity"
+            android:exported="true"/>
+        <activity
             android:name=".MapActivity"
             android:exported="true"/>
         <activity

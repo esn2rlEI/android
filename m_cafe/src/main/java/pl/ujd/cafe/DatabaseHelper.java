@@ -22,13 +22,16 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
         database.insert("drinks", null, this.getProduct("Latte", 4.2, "Creamy and smooth"));
         database.insert("drinks", null, this.getProduct("Tea", 2.0, "Refreshing and light"));
 
-        database.insert("snacks", null, this.getProduct("Sandwich", 5.0, "Fresh and filling"));
+        database.insert("snacks", null, this.getProduct("Muffin", 5.0, "Fresh and filling"));
         database.insert("snacks", null, this.getProduct("Cookie", 1.2, "Sweet treat"));
         database.insert("snacks", null, this.getProduct("Croissant", 3.0, "Buttery and crisp"));
 
         database.insert("locations", null, this.getLocation("Warsaw Central Cafe", "Main Street 1", "08:00–22:00", "central_cafe_map"));
         database.insert("locations", null, this.getLocation("Downtown Deli Cracow", "High Street 22", "07:30–23:00", "downtown_deli_map"));
+        database.insert("locations", null, this.getLocation("Seven cats tavern", "Gustfields, Redania", "05:00-23:00", "redania_map"));
     }
+
+    @Override public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion) {}
 
     private ContentValues getProduct(final String name, final double price, final String description) {
         final ContentValues values = new ContentValues();
@@ -46,7 +49,5 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
         values.put("map", map);
         return values;
     }
-
-    @Override public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion) {}
 
 }

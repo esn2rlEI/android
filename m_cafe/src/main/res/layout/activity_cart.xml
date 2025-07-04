@@ -4,13 +4,29 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ListView
+<!--    <ListView-->
+<!--        android:id="@+id/cart_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:layout_marginTop="128dp"-->
+<!--        android:layout_marginBottom="32dp"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="128dp"
         android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:id="@+id/cart_worth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/cart_worth"/>
 
     <Button
         android:id="@+id/checkout_button"

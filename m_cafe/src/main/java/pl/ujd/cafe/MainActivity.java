@@ -5,18 +5,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// req:
-    // snacks (x3), drinks (x3) and locations (x3) from database +
-    // each item from list has "add to cart" button and amount to add +
-    // each item in cart has "trash" button
-    // item details contain name, image, description and price +
-    // location details contain name, open hours and address +
-// opt:
-    // cart sums order price
-    // location details contain map (img)
-    // "checkout" button in cart sends order confirmation mail
-    // home page has logo
-
 public final class MainActivity extends AppCompatActivity {
 
     @Override protected void onCreate(final Bundle savedInstanceState) {

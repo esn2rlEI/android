@@ -26,9 +26,9 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
         database.insert("snacks", null, this.getProduct("Cookie", 1.2, "Sweet treat"));
         database.insert("snacks", null, this.getProduct("Croissant", 3.0, "Buttery and crisp"));
 
-        database.insert("locations", null, this.getLocation("Warsaw Central Cafe", "Main Street 1", "08:00–22:00", "central_cafe_map"));
-        database.insert("locations", null, this.getLocation("Downtown Deli Cracow", "High Street 22", "07:30–23:00", "downtown_deli_map"));
-        database.insert("locations", null, this.getLocation("Seven cats tavern", "Gustfields, Redania", "05:00-23:00", "redania_map"));
+        database.insert("locations", null, this.getLocation("The Clever Clogs Tavern", "Lassommoir, Toussaint", "08:00–22:00", ""));
+        database.insert("locations", null, this.getLocation("The New Port", "Ard Skellig, Skellige", "07:30–23:00", ""));
+        database.insert("locations", null, this.getLocation("Seven Cats Tavern", "Gustfields, Redania", "05:00-23:00", ""));
     }
 
     @Override public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion) {}

@@ -39,8 +39,7 @@ public final class SnackDetailActivity extends AppCompatActivity {
             for (int i = 0; i < quantity; i++) {
                 CartManager.getInstance().addItem(new Item(name, price, description, imageId));
             }
-            if (quantity > 1) Toast.makeText(this, "Added to cart (x" + quantity + ")", Toast.LENGTH_SHORT).show();
-            else Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Added to cart (x" + quantity + ")", Toast.LENGTH_SHORT).show();
         });
     }
 

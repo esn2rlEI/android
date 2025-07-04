@@ -26,4 +26,5 @@
     <string name="cart_quantity">1</string>
     <string name="cart_quantity_name">Quantity</string>
     <string name="cart_quantity_prefix">Quantity:</string>
+    <string name="cart_worth">Total: 0.00 PLN</string>
 </resources>

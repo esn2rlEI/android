@@ -49,10 +49,9 @@ public final class LocationsActivity extends AppCompatActivity {
 
     private int getImageIdForLocation(final String name) {
         switch (name.toLowerCase()) {
-            case "espresso": return R.drawable.espresso;
-            case "latte": return R.drawable.latte;
-            case "tea": return R.drawable.latte;
-            default: return R.drawable.espresso;
+            case "the clever clogs tavern": return R.drawable.clogs;
+            case "the new port": return R.drawable.new_port;
+            default: return R.drawable.seven_cats;
         }
     }
 

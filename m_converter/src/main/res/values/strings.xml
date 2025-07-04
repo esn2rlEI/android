@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Converter</string>
     <string name="title">Converter</string>
-    <string name="input">Enter a number</string>
+    <string name="input">Enter an Arabic or Roman numeral</string>
     <string name="submit">convert</string>
     <string name="result">Result</string>
 </resources>

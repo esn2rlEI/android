@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public final class MainActivity extends AppCompatActivity {
@@ -37,9 +36,9 @@ public final class MainActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(text)) {
                 this.result.setText(""); return;
             }
-            if (TextUtils.isDigitsOnly(text)) {
+            if (TextUtils.isDigitsOnly(text) && this.isArabicValid(text)) {
                 this.result.setText(this.toRoman(Integer.parseInt(text)));
-            } else if (this.isRomansOnly(text.toUpperCase())) {
+            } else if (this.isRomansOnly(text.toUpperCase()) && this.isRomansValid(text.toUpperCase())) {
                 this.result.setText(String.format("%s", this.toArabic(text.toUpperCase())));
             } else {
                 this.result.setText(String.format("%s", "Invalid numeral"));
@@ -63,6 +62,10 @@ public final class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private boolean isRomansValid(final String text) {
+        return text.matches("(^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$)");
+    }
+
     private String toRoman(int number) {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < this.ARABICS.length; i++) {
@@ -71,6 +74,10 @@ public final class MainActivity extends AppCompatActivity {
             }
         }
         return builder.toString();
+    }
+
+    private boolean isArabicValid(final String number) {
+        return !number.startsWith("0");
     }
 
     private int toArabic(final String number) {
